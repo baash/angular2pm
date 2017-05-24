@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
- 
+import { Component, OnInit } from '@angular/core';
+import { IProduct } from './product';
 
 @Component({
         selector: 'pm-products',
-        templateUrl: 'app/products/product-list.component.html'
+        moduleId: module.id, 
+        templateUrl: 'product-list.component.html',
+        styleUrls: ['product-list.component.css']
 })
 
-export class ProductListComponent{
+
+export class ProductListComponent implements OnInit{
+  
     pageTitle: string='Product List';
     showImage: boolean=false;
-    listFilter: string:'cart';
-    products: any[] = [
+    products: IProduct[] = [
         {
             "productId": 2,
             "productName": "Garden Cart",
@@ -18,7 +21,7 @@ export class ProductListComponent{
             "releaseDate": "March 18, 2016",
             "description": "15 gallon capacity rolling garden cart",
             "price": 32.99,
-            "starRating": 4.2,
+            "starRating": 3,
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
         },
         {
@@ -28,12 +31,19 @@ export class ProductListComponent{
             "releaseDate": "May 21, 2016",
             "description": "Curved claw steel hammer",
             "price": 8.9,
-            "starRating": 4.8,
+            "starRating": 4,
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
         }
     ];
     toggleImage(): void 
     {
         this.showImage = !this.showImage;
+    }
+    ngOnInit() : void
+    {
+        console.log('called init');
+    }
+    onRatingClick(message:string): void {
+        this.pageTitle = 'Product list : '+message
     }
 }

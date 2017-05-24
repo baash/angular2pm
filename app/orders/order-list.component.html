@@ -1,0 +1,30 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div class='table-responsive'>
+            <table class='table'
+                   *ngIf='orders && orders.length'>
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Item Name</th>
+                        <th>Ship Date</th>
+                        <th>Price</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let order of orders'>
+                        <td>{{order.orderId}}</td>
+                        <td>{{order.productCode}}</td>
+                        <td>{{order.shipDate}}</td>
+                        <td>{{order.price | currency:'USD':true:'1.2-2'}}</td>
+                        <td>{{order.shipAddress}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

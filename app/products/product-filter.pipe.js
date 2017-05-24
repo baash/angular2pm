@@ -7,16 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var ProductFilterPipe = (function () {
+    function ProductFilterPipe() {
     }
-    return AppComponent;
+    ProductFilterPipe.prototype.transform = function (value, filterBy) {
+        filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
+        return filterBy ? value.filter(function (product) { return product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1; }) : value;
+    };
+    return ProductFilterPipe;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'pm-app',
-        template: "<pm-products-header></pm-products-header><div><h1>Product Manager</h1>\n\n    </div><pm-products></pm-products>\n    <pm-orders></pm-orders>"
+ProductFilterPipe = __decorate([
+    core_1.Pipe({
+        name: 'productFilter'
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], ProductFilterPipe);
+exports.ProductFilterPipe = ProductFilterPipe;
+//# sourceMappingURL=product-filter.pipe.js.map
